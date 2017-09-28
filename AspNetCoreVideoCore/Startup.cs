@@ -24,7 +24,9 @@ namespace AspNetCoreVideoCore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IMessageService, HardcodedMessageService>();
+            services.AddSingleton(provider => Configuration);
+            services.AddSingleton<IMessageService, ConfigurationMessageService>();
+
         }
 
         public void Configure(IApplicationBuilder app,
