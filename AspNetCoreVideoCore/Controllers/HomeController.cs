@@ -1,7 +1,5 @@
-﻿using AspNetCoreVideoCore.Models;
-using AspNetCoreVideoCore.Services;
+﻿using AspNetCoreVideoCore.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace AspNetCoreVideoCore.Controllers
 {

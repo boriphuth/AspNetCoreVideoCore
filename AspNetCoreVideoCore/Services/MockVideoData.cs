@@ -1,8 +1,5 @@
-﻿using AspNetCoreVideoCore.Models;
-using System;
+﻿using AspNetCoreVideoCore.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCoreVideoCore.Services
 {

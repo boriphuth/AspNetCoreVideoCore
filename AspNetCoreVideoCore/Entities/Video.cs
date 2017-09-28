@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspNetCoreVideoCore.Models
+namespace AspNetCoreVideoCore.Entities
 {
     public class Video
     {
