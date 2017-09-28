@@ -1,9 +1,10 @@
 ﻿using AspNetCoreVideoCore.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreVideoCore.Data
 {
-    public class VideoDbContext : DbContext
+    public class VideoDbContext : IdentityDbContext<User>
     {
         public DbSet<Video> Videos { get; set; }
 

@@ -1,13 +1,13 @@
 ﻿using AspNetCoreVideoCore.Entities;
-using AspNetCoreVideoCore.Models;
 using AspNetCoreVideoCore.Services;
 using AspNetCoreVideoCore.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 
 namespace AspNetCoreVideoCore.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IVideoData _videos;
@@ -17,6 +17,7 @@ namespace AspNetCoreVideoCore.Controllers
             _videos = videos;
         }
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = _videos.GetAll().Select(video =>

@@ -9,6 +9,8 @@ using AspNetCoreVideoCore.Services;
 using Microsoft.AspNetCore.Routing;
 using AspNetCoreVideoCore.Data;
 using Microsoft.EntityFrameworkCore;
+using AspNetCoreVideoCore.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AspNetCoreVideoCore
 {
@@ -34,6 +36,9 @@ namespace AspNetCoreVideoCore
             services.AddDbContext<VideoDbContext>(options =>
                 options.UseSqlServer(conn));
 
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<VideoDbContext>();
+
             services.AddMvc();
             services.AddSingleton(provider => Configuration);
             services.AddSingleton<IMessageService, ConfigurationMessageService>();
@@ -51,6 +56,7 @@ namespace AspNetCoreVideoCore
             }
 
             app.UseFileServer();
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {
