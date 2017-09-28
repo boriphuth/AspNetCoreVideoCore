@@ -16,7 +16,6 @@ namespace AspNetCoreVideoCore.Services
         public void Add(Video video)
         {
             _db.Add(video);
-            _db.SaveChanges();
         }
 
         public Video Get(int id)
@@ -27,6 +26,11 @@ namespace AspNetCoreVideoCore.Services
         public IEnumerable<Video> GetAll()
         {
             return _db.Videos;
+        }
+
+        public int Commit()
+        {
+            return _db.SaveChanges();
         }
     }
 }
