@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AspNetCoreVideoCore.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreVideoCore.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
-        public string Index()
+        public ObjectResult Index()
         {
-            return "Hello, from the controller!";
+            var model = new Video { Id = 1, Title = "Shreck" };
+            return new ObjectResult(model);
         }
-
     }
 }
