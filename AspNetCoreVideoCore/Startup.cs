@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
+using AspNetCoreVideoCore.Services;
 
 namespace AspNetCoreVideoCore
 {
@@ -20,8 +22,13 @@ namespace AspNetCoreVideoCore
             Configuration = builder.Build();
         }
 
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<IMessageService, HardcodedMessageService>();
+        }
+
         public void Configure(IApplicationBuilder app,
-        IHostingEnvironment env, ILoggerFactory loggerFactory)
+        IHostingEnvironment env, ILoggerFactory loggerFactory, IMessageService msg)
         {
             loggerFactory.AddConsole();
 
@@ -32,8 +39,7 @@ namespace AspNetCoreVideoCore
 
             app.Run(async (context) =>
             {
-                var message = Configuration["Message"];
-                await context.Response.WriteAsync(message);
+                await context.Response.WriteAsync(msg.GetMessage());
             });
         }
 
