@@ -30,7 +30,7 @@ namespace AspNetCoreVideoCore
             services.AddMvc();
             services.AddSingleton(provider => Configuration);
             services.AddSingleton<IMessageService, ConfigurationMessageService>();
-
+            services.AddScoped<IVideoData, MockVideoData>();
         }
 
         public void Configure(IApplicationBuilder app,
