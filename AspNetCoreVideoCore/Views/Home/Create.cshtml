@@ -1,6 +1,10 @@
 ﻿@using AspNetCoreVideoCore.Models
 @model AspNetCoreVideoCore.Entities.Video
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <h2>Create Video</h2>
 <form asp-action="Create">
