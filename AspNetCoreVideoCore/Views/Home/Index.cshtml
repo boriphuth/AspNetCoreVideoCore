@@ -12,6 +12,7 @@
                 <td>@video.Id</td>
                 <td>@video.Title</td>
                 <td>@video.Genre</td>
+                <td>@Html.ActionLink(video.Id.ToString(), "Details", new { id = video.Id })</td>
             </tr>
         }
     </table>

@@ -1,5 +1,6 @@
 ﻿using AspNetCoreVideoCore.Entities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AspNetCoreVideoCore.Services
 {
@@ -21,6 +22,12 @@ namespace AspNetCoreVideoCore.Services
         {
             return _videos;
         }
+
+        public Video Get(int id)
+        {
+            return _videos.FirstOrDefault(v => v.Id.Equals(id));
+        }
+
     }
 
 }
