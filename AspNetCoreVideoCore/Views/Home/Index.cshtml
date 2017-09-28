@@ -1,4 +1,5 @@
-﻿@model IEnumerable<AspNetCoreVideoCore.ViewModels.VideoViewModel>
+﻿@model IEnumerable<VideoViewModel>
+
 @{
     ViewBag.Title = "Home";
 }
@@ -8,17 +9,18 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(video.Id.ToString(), "Details",
-                new { id = video.Id })
-        </td>
-        <td>@video.Title</td>
-        <td>@video.Genre</td>
-    </tr>
+                <a asp-action="Details" asp-route-id="@video.Id">
+                    Details
+                </a>
+            </td>
+            <td>@video.Title</td>
+            <td>@video.Genre</td>
+        </tr>
     }
 </table>
+
+<a asp-action="Create">Create</a>
 
 @section footer{
     <div>This is the Index footer</div>
 }
-
-
