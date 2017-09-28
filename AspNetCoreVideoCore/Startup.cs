@@ -24,6 +24,7 @@ namespace AspNetCoreVideoCore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             services.AddSingleton(provider => Configuration);
             services.AddSingleton<IMessageService, ConfigurationMessageService>();
 
@@ -40,6 +41,8 @@ namespace AspNetCoreVideoCore
             }
 
             app.UseFileServer();
+
+            app.UseMvcWithDefaultRoute();
 
             app.Run(async (context) =>
             {
