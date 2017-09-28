@@ -7,8 +7,8 @@ using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using AspNetCoreVideoCore.Services;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Mvc;
-using System;
+using AspNetCoreVideoCore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreVideoCore
 {
@@ -16,17 +16,24 @@ namespace AspNetCoreVideoCore
     {
         public IConfiguration Configuration { get; set; }
 
-        public Startup()
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("appsettings.json", optional: true);
+
+            if (env.IsDevelopment())
+                builder.AddUserSecrets<Startup>();
 
             Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var conn = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<VideoDbContext>(options =>
+                options.UseSqlServer(conn));
+
             services.AddMvc();
             services.AddSingleton(provider => Configuration);
             services.AddSingleton<IMessageService, ConfigurationMessageService>();
